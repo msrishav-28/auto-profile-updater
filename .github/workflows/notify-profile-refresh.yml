@@ -1,0 +1,20 @@
+name: Notify Profile README
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify-profile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository dispatch
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_REPO_DISPATCH_TOKEN }}
+        run: |
+          gh api \
+            --method POST \
+            /repos/msrishav-28/msrishav-28/dispatches \
+            -f event_type='profile-readme-refresh' \
+            -f client_payload[source_repository]="${{ github.repository }}" \
+            -f client_payload[source_sha]="${{ github.sha }}"

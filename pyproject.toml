@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "msrishav-profile-readme-intelligence"
+version = "1.0.0"
+description = "GitHub Profile README Intelligence System for msrishav-28"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "M S Rishav Subhin", email = "rishavsubhin@gmail.com" }
+]
+dependencies = [
+    "PyYAML>=6.0.2,<7",
+    "requests>=2.32.0,<3"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0,<9"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers"

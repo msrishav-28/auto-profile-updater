@@ -1,0 +1,72 @@
+schema_version: 1
+
+identity:
+  display_name: M S Rishav Subhin
+  github_login: msrishav-28
+  location: Bengaluru, India
+  education: Christ University | B.Tech ECE with AI & ML | Expected May 2027
+
+positioning:
+  - AI/ML Engineer
+  - Full-Stack Builder
+  - ECE-AI&ML Student
+
+approved_experience:
+  - name: DRDO CVRDE
+    wording: "exposure to research-oriented engineering work"
+  - name: IEEE
+    wording: "technical community involvement"
+  - name: POWERGRID
+    wording: "project and domain exposure"
+
+approved_domains:
+  - AI/ML
+  - full-stack product development
+  - computer vision
+  - agentic systems
+  - developer productivity tooling
+  - workflow automation
+  - user-focused frontend engineering
+
+featured_repositories:
+  - forgebot
+  - resume-analyzer
+  - RoseCycle
+  - confesscampus
+
+manual_current_focus:
+  - Building agentic and automation-oriented developer tools
+  - Developing AI-enabled product concepts for practical user workflows
+  - Improving production engineering fundamentals across backend, frontend, deployment, and observability
+
+writing:
+  person: first_person
+  emoji_policy: forbidden
+  max_total_words: 220
+  prohibited_terms:
+    - expert
+    - world-class
+    - revolutionary
+    - cutting-edge
+    - 10x
+    - ninja
+    - guru
+    - visionary
+    - passionate
+    - best-in-class
+  prohibited_topics:
+    - salary
+    - grades
+    - private repositories
+    - personal contact details
+    - personal relationships
+  allowed_organizations:
+    - DRDO CVRDE
+    - IEEE
+    - POWERGRID
+    - Christ University
+
+publishing:
+  default_mode: pr
+  schedule_hours: 12
+  minimum_hours_between_updates: 6

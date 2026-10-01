@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-01T14:30:00Z",
+  "profile": {
+    "login": "msrishav-28",
+    "name": "M S Rishav Subhin",
+    "bio": null,
+    "location": "Bengaluru, India",
+    "followers": 11
+  },
+  "contributions": {
+    "commits": 42,
+    "pull_requests": 8,
+    "issues": 3,
+    "repositories": 5
+  },
+  "repositories": [
+    {
+      "name": "forgebot",
+      "url": "https://github.com/msrishav-28/forgebot",
+      "description": "forgebot — make any git repo self-operating.",
+      "primary_language": "Python",
+      "topics": ["github", "automation", "agents"],
+      "is_archived": false,
+      "is_fork": false,
+      "featured": true,
+      "pushed_at": "2026-09-21T00:00:00Z",
+      "stars": 12,
+      "forks": 2,
+      "releases": [],
+      "recent_commits": [
+        {
+          "date": "2026-09-21T00:00:00Z",
+          "headline": "Add repository bot instructions",
+          "url": "https://github.com/msrishav-28/forgebot/commit/12345"
+        }
+      ]
+    },
+    {
+      "name": "resume-analyzer",
+      "url": "https://github.com/msrishav-28/resume-analyzer",
+      "description": "Automated parsing and structured extraction of resume signals.",
+      "primary_language": "Python",
+      "topics": ["ai", "resume", "nlp"],
+      "is_archived": false,
+      "is_fork": false,
+      "featured": true,
+      "pushed_at": "2026-09-15T00:00:00Z",
+      "stars": 8,
+      "forks": 1,
+      "releases": [],
+      "recent_commits": [
+        {
+          "date": "2026-09-15T00:00:00Z",
+          "headline": "Improve entity extraction accuracy",
+          "url": "https://github.com/msrishav-28/resume-analyzer/commit/67890"
+        }
+      ]
+    }
+  ],
+  "allowed_repositories": ["forgebot", "resume-analyzer", "RoseCycle", "confesscampus"],
+  "allowed_organizations": ["DRDO CVRDE", "IEEE", "POWERGRID", "Christ University"]
+}
