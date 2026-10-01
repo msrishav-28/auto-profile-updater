@@ -130,7 +130,7 @@ jobs:
 
       - name: Create or update pull request
         if: steps.diff.outputs.changed == 'true' && (inputs.mode == 'pr' || inputs.mode == '')
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ github.token }}
           branch: bot/profile-readme-refresh
