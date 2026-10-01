@@ -1,12 +1,13 @@
-# Auto Profile Updater ⚡
+# Auto Profile Updater
 
-> **GitHub Profile Intelligence System**: An evidence-grounded, zero-hallucination automation engine that periodically updates your public GitHub profile biography with real, verifiable shipping activity — without ever touching your custom layouts, tables, or GIFs.
+> **GitHub Profile Intelligence System**: An evidence-grounded, zero-hallucination automation engine that periodically updates your public GitHub profile biography with real, verifiable shipping activity — without modifying custom layouts, tables, or media.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python: 3.11+](https://img.shields.io/badge/Python-3.11+-brightgreen.svg)](pyproject.toml)
-[![Tests: 34 Passing](https://img.shields.io/badge/Tests-34%20Passing-brightgreen.svg)](tests/)
-[![Powered by: GitHub Models](https://img.shields.io/badge/Powered%20By-GitHub%20Models-blueviolet.svg)](.github/prompts/profile.prompt.yml)
-[![Zero External API Keys](https://img.shields.io/badge/API%20Keys-Zero%20External-success.svg)](#security-and-trust-boundaries)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)](pyproject.toml)
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=flat-square&logo=githubactions&logoColor=white)](.github/workflows/profile-writer.yml)
+[![GitHub Models](https://img.shields.io/badge/GitHub_Models-GPT--4o--mini-1F425F?style=flat-square&logo=github&logoColor=white)](.github/prompts/profile.prompt.yml)
+[![GraphQL](https://img.shields.io/badge/API-GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)](collect_context.py)
+[![Pytest](https://img.shields.io/badge/Tests-34%20Passing-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](tests/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-24292e?style=flat-square)](LICENSE)
 
 ---
 
@@ -119,6 +120,36 @@ I build practical AI-enabled products and full-stack applications with a focus o
  │ Pull Request Created / Updated for Human Review        │
  └────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## Tech Stack
+
+| Component | Technology | Purpose |
+|---|---|---|
+| **Runtime** | [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org) | Deterministic core execution, data parsing, and string manipulation |
+| **Orchestration** | [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-Automation-2088FF?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/features/actions) | Serverless scheduled jobs, concurrency locks, and PR management |
+| **AI Inference** | [![GitHub Models](https://img.shields.io/badge/GitHub_Models-GPT--4o--mini-1F425F?style=flat-square&logo=github&logoColor=white)](https://github.com/marketplace/actions/ai-inference) | Zero-credential token inference using OpenAI GPT-4o-mini |
+| **Data Ingestion** | [![GraphQL](https://img.shields.io/badge/API-GitHub_GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)](https://docs.github.com/en/graphql) | Structured public contribution, repository, and release data querying |
+| **Configuration** | [![YAML](https://img.shields.io/badge/Config-YAML-CB171E?style=flat-square&logo=yaml&logoColor=white)](profile-facts.yml) | Human-curated ground truth facts and policy rules |
+| **Testing** | [![Pytest](https://img.shields.io/badge/Tests-Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](https://pytest.org) | 34 automated unit and invariant regression tests |
+
+---
+
+## Execution Modes: Do You Need Cron?
+
+The system supports three distinct trigger modes in `.github/workflows/profile-writer.yml`:
+
+1. **Manual Dispatch (`workflow_dispatch`):**
+   * Trigger on demand by clicking **Run workflow** in the GitHub Actions tab.
+   * **Best for:** Complete control with zero automated runs or background noise.
+2. **Scheduled Interval (`cron`):**
+   * Runs automatically every 12 hours (`17 */12 * * *`).
+   * **Best for:** Fully automated maintenance. If no new code was pushed, diff detection prevents unnecessary pull requests.
+   * **Is it required?** No. If you prefer updating only when you choose to, you can comment out the `schedule` block in `.github/workflows/profile-writer.yml`.
+3. **Repository Dispatch (`repository_dispatch`):**
+   * Configured via `.github/workflows/notify-profile-refresh.yml` to trigger only when you push to `main` in selected repositories.
+   * **Best for:** Event-driven updates that only run when you ship real code.
 
 ---
 
