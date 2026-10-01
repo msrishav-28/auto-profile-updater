@@ -81,7 +81,7 @@ jobs:
 
       - name: Generate candidate
         id: generate
-        uses: actions/ai-inference@v2
+        uses: actions/ai-inference@v3
         with:
           model: ${{ inputs.model || 'openai/gpt-4o-mini' }}
           prompt-file: .github/prompts/profile.prompt.yml
