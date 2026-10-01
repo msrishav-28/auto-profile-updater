@@ -62,9 +62,9 @@ jobs:
       - name: Create artifact directory
         run: mkdir -p .artifacts
 
-      - name: Collect public GitHub evidence
+      - name: Collect GitHub evidence
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.PROFILE_PAT || github.token }}
         run: |
           python collect_context.py \
             --login "${PROFILE_LOGIN}" \

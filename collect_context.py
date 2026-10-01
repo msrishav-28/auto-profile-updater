@@ -36,13 +36,13 @@ query ProfileContext($login: String!, $repoLimit: Int!) {
       first: $repoLimit
       ownerAffiliations: OWNER
       orderBy: { field: PUSHED_AT, direction: DESC }
-      privacy: PUBLIC
     ) {
       nodes {
         name
         nameWithOwner
         url
         description
+        isPrivate
         isArchived
         isFork
         pushedAt
@@ -140,6 +140,7 @@ def parse_iso_date(date_str: str | None) -> datetime.datetime | None:
 def calculate_repo_score(
     repo: dict[str, Any],
     featured_repos: list[str],
+    privacy_config: dict[str, Any] | None = None,
     now: datetime.datetime | None = None,
 ) -> int:
     """
@@ -152,12 +153,21 @@ def calculate_repo_score(
     is_featured = name in featured_repos
     is_fork = repo.get("isFork", False)
     is_archived = repo.get("isArchived", False)
+    is_private = repo.get("isPrivate", False)
 
     # Exclusions
     if is_archived:
         return -1
     if is_fork and not is_featured:
         return -1
+
+    # Privacy filtering
+    if is_private:
+        if not privacy_config or not privacy_config.get("include_private", False):
+            return -1
+        allowed_private = privacy_config.get("allowed_private_repositories", [])
+        if allowed_private and name not in allowed_private and not is_featured:
+            return -1
 
     score = 0
 
@@ -215,6 +225,7 @@ def calculate_repo_score(
 def sort_repositories(
     repos: list[dict[str, Any]],
     featured_repos: list[str],
+    privacy_config: dict[str, Any] | None = None,
     now: datetime.datetime | None = None,
 ) -> list[tuple[dict[str, Any], int]]:
     """
@@ -227,7 +238,7 @@ def sort_repositories(
     """
     scored = []
     for r in repos:
-        s = calculate_repo_score(r, featured_repos, now)
+        s = calculate_repo_score(r, featured_repos, privacy_config, now)
         if s >= 0:
             scored.append((r, s))
 
@@ -343,6 +354,7 @@ def build_context_json(
             "topics": topics,
             "is_archived": r.get("isArchived", False),
             "is_fork": r.get("isFork", False),
+            "is_private": r.get("isPrivate", False),
             "featured": name in facts.get("featured_repositories", []),
             "pushed_at": r.get("pushedAt"),
             "stars": r.get("stargazerCount", 0),
@@ -508,11 +520,12 @@ def main() -> int:
         return 1
 
     featured_repos = facts.get("featured_repositories", [])
+    privacy_config = facts.get("privacy", {})
     raw_repos = (
         raw_user.get("repositories", {}).get("nodes", [])
     )
 
-    scored_repos = sort_repositories(raw_repos, featured_repos)
+    scored_repos = sort_repositories(raw_repos, featured_repos, privacy_config)
     # Select at most five repositories
     top_repos = [r for r, s in scored_repos[:5]]
 

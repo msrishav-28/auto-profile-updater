@@ -6,7 +6,7 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=flat-square&logo=githubactions&logoColor=white)](.github/workflows/profile-writer.yml)
 [![GitHub Models](https://img.shields.io/badge/GitHub_Models-GPT--4o--mini-1F425F?style=flat-square&logo=github&logoColor=white)](.github/prompts/profile.prompt.yml)
 [![GraphQL](https://img.shields.io/badge/API-GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white)](collect_context.py)
-[![Pytest](https://img.shields.io/badge/Tests-34%20Passing-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](tests/)
+[![Pytest](https://img.shields.io/badge/Tests-37%20Passing-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-24292e?style=flat-square)](LICENSE)
 
 ---
@@ -196,7 +196,21 @@ In your repository settings:
 3. Check the box **Allow GitHub Actions to create and approve pull requests**.
 4. Save.
 
-That's it! The workflow runs automatically every 12 hours or whenever you trigger it manually via the Actions tab.
+### 5. Optional: Enable Private Repositories
+By default, the system only inspects public repositories. To include private projects securely:
+1. Generate a GitHub Personal Access Token (PAT) with `repo` read access (or fine-grained read access to Contents and Metadata).
+2. In your repository, go to **Settings > Secrets and variables > Actions > New repository secret**.
+3. Name the secret `PROFILE_PAT` and paste your token.
+4. Enable private repository inclusion in [`profile-facts.yml`](profile-facts.yml):
+   ```yaml
+   privacy:
+     include_private: true
+     # Explicitly list the private repositories permitted to appear on your public profile:
+     allowed_private_repositories:
+       - my-stealth-project
+       - internal-automation-tool
+   ```
+   *Any private repository not explicitly listed here is ignored, preventing unintended leaks.*
 
 ---
 

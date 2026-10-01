@@ -205,3 +205,55 @@ def test_cli_execution_with_fixture(facts_data):
             os.remove(json_out_path)
         if os.path.exists(md_out_path):
             os.remove(md_out_path)
+
+
+def test_private_repo_excluded_by_default():
+    private_repo = {
+        "name": "internal-tool",
+        "isArchived": False,
+        "isFork": False,
+        "isPrivate": True,
+        "pushedAt": "2026-09-29T12:00:00Z",
+    }
+    # With no privacy config
+    assert calculate_repo_score(private_repo, []) == -1
+
+    # With include_private: False
+    assert calculate_repo_score(private_repo, [], {"include_private": False}) == -1
+
+
+def test_private_repo_included_when_permitted():
+    private_repo = {
+        "name": "internal-tool",
+        "isArchived": False,
+        "isFork": False,
+        "isPrivate": True,
+        "description": "Internal developer tool.",
+        "pushedAt": "2026-09-29T12:00:00Z",
+        "stargazerCount": 3,
+        "forkCount": 0,
+        "repositoryTopics": {"nodes": []},
+        "releases": {"nodes": []},
+    }
+    privacy_config = {
+        "include_private": True,
+        "allowed_private_repositories": ["internal-tool"],
+    }
+    score = calculate_repo_score(private_repo, [], privacy_config)
+    assert score > 0
+
+
+def test_private_repo_excluded_when_not_in_allowed_whitelist():
+    private_repo = {
+        "name": "secret-unapproved",
+        "isArchived": False,
+        "isFork": False,
+        "isPrivate": True,
+        "pushedAt": "2026-09-29T12:00:00Z",
+    }
+    privacy_config = {
+        "include_private": True,
+        "allowed_private_repositories": ["other-allowed-tool"],
+    }
+    assert calculate_repo_score(private_repo, [], privacy_config) == -1
+

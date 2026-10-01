@@ -70,3 +70,7 @@ publishing:
   default_mode: pr
   schedule_hours: 12
   minimum_hours_between_updates: 6
+
+privacy:
+  include_private: false
+  allowed_private_repositories: []
