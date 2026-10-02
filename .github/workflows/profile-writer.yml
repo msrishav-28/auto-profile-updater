@@ -110,6 +110,13 @@ jobs:
             --readme README.md \
             --generated .artifacts/generated.md
 
+      - name: Deterministically update tables
+        run: |
+          python render_tables.py \
+            --readme README.md \
+            --context .artifacts/context.json \
+            --facts profile-facts.yml
+
       - name: Detect README change
         id: diff
         run: |
