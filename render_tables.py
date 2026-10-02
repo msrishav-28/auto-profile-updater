@@ -197,6 +197,29 @@ def generate_current_focus_rows(facts: dict) -> list[str]:
         rows.append(f"| {item} | Active |")
     return rows
 
+def generate_github_stats(context: dict) -> list[str]:
+    # Placeholder for a generic GitHub stats table based on context.json
+    repos = context.get("repositories", [])
+    total_stars = sum(repo.get("stars", 0) for repo in repos)
+    total_repos = len(repos)
+    
+    rows = []
+    rows.append(f"| Total Public Repositories | {total_repos} |")
+    rows.append(f"| Total Stars Earned | {total_stars} |")
+    if repos:
+        most_starred = max(repos, key=lambda x: x.get("stargazers", 0))
+        rows.append(f"| Most Starred Repository | [{most_starred.get('name')}]({most_starred.get('url')}) ({most_starred.get('stargazers')} ⭐) |")
+        
+    return rows
+
+def generate_latest_posts(facts: dict) -> list[str]:
+    # In a full implementation, this would fetch from an RSS feed URL provided in facts
+    # For now, we return a placeholder table row
+    blog_url = facts.get("blog_rss_url")
+    if not blog_url:
+        return ["| No RSS feed configured. Add `blog_rss_url` to profile-facts.yml | |"]
+    return ["| Blog support enabled | [Visit Blog](" + blog_url + ") |"]
+
 def generate_active_builds_rows(context: dict, facts: dict) -> list[str]:
     # We prioritize featured repositories, or fallback to the top repositories from context
     featured = facts.get("featured_repositories", [])
@@ -282,6 +305,16 @@ def process_readme(readme_path: str, context_path: str, facts_path: str):
             new_lines = [row + "\n" for row in rows]
             lines[b+1 : e] = new_lines
             print(f"Updated HTML table region: {name}")
+        elif rtype == "TABLE" and name == "GITHUB_STATS":
+            rows = generate_github_stats(context)
+            new_lines = [row + "\n" for row in rows]
+            lines[b+1 : e] = new_lines
+            print(f"Updated table region: {name}")
+        elif rtype == "TABLE" and name == "LATEST_POSTS":
+            rows = generate_latest_posts(facts)
+            new_lines = [row + "\n" for row in rows]
+            lines[b+1 : e] = new_lines
+            print(f"Updated table region: {name}")
         elif rtype == "BADGES" and name == "TOP_LANGUAGES":
             rows = generate_top_languages_badges(context)
             new_lines = [row + "\n" for row in rows]

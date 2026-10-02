@@ -46,7 +46,7 @@ This project is built under strict production-engineering standards: every chang
 * Tests live in the `tests/` directory.
 * Run tests with `pytest -v`.
 * Offline testing is mandatory: do not require live GitHub credentials or network connectivity in the standard test suite. Use fixtures in `tests/fixtures/`.
-* All 34 existing tests must pass before submitting a pull request.
+* All 56 existing tests must pass before submitting a pull request.
 
 ---
 

@@ -41,6 +41,7 @@ query ProfileContext($login: String!, $repoLimit: Int!) {
         name
         nameWithOwner
         url
+        homepageUrl
         description
         isPrivate
         isArchived
@@ -349,6 +350,7 @@ def build_context_json(
         processed_repos.append({
             "name": name,
             "url": r.get("url"),
+            "homepageUrl": r.get("homepageUrl"),
             "description": sanitize_text(r.get("description"), max_length=400),
             "primary_language": (r.get("primaryLanguage") or {}).get("name"),
             "topics": topics,

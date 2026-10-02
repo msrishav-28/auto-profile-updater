@@ -18,6 +18,7 @@
     {
       "name": "forgebot",
       "url": "https://github.com/msrishav-28/forgebot",
+      "homepageUrl": "https://forgebot.dev",
       "description": "forgebot — make any git repo self-operating.",
       "primary_language": "Python",
       "topics": ["github", "automation", "agents"],
@@ -39,6 +40,7 @@
     {
       "name": "resume-analyzer",
       "url": "https://github.com/msrishav-28/resume-analyzer",
+      "homepageUrl": null,
       "description": "Automated parsing and structured extraction of resume signals.",
       "primary_language": "Python",
       "topics": ["ai", "resume", "nlp"],
