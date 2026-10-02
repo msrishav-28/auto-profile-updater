@@ -335,7 +335,11 @@ auto-profile-updater/
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for code quality standards, test expectations, and pull request guidelines.
+Contributions are welcome! We have built a robust foundation for deterministic profile updates, and there are many features (Spotify integrations, RSS parsing, WakaTime stats) that the community can add. 
+
+Check out our [Community Ideas & Contribution Board](IDEAS.md) to see what you can build next!
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for code quality standards, test expectations, and pull request guidelines.
 
 ---
 
