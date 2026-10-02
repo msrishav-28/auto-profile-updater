@@ -42,7 +42,7 @@ The system enforces a **Strict Marker Isolation Boundary**. It only reads and sp
 * **Your Custom Artifacts are Safe:**
   * Terminal headers & animated SVGs `<img src="..." />` remain untouched.
   * Custom shields.io badges remain untouched.
-  * Multi-column Markdown project tables remain untouched.
+  * Multi-column Markdown project tables remain untouched (or can be updated precisely using `<!-- TABLE:BEGIN -->` markers and `render_tables.py`).
   * Embedded GIFs, videos, and custom styling remain untouched.
   * Other background actions and CI workflows continue running unaffected.
 * **Fail-Closed Protection:** If the markers are missing, duplicated, out of order, or corrupted, the tool **aborts immediately** with an error. It will never guess or overwrite your page.
