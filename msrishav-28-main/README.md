@@ -22,6 +22,12 @@
   <a href="https://github.com/msrishav-28"><img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=00FF41" alt="GitHub" /></a>
 </p>
 
+<p align="center">
+<!-- BADGES:BEGIN:TOP_LANGUAGES -->
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=white)
+<!-- BADGES:END:TOP_LANGUAGES -->
+</p>
+
 ---
 
 <!-- AI:BEGIN -->

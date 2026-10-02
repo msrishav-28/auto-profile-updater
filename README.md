@@ -41,7 +41,7 @@ The system enforces a **Strict Marker Isolation Boundary**. It only reads and sp
 * **Zero Layout Corruption:** Everything above `<!-- AI:BEGIN -->` and everything below `<!-- AI:END -->` is **completely immutable**.
 * **Your Custom Artifacts are Safe:**
   * Terminal headers & animated SVGs `<img src="..." />` remain untouched.
-  * Custom shields.io badges remain untouched.
+  * Custom shields.io badges remain untouched (or can be dynamically generated using `<!-- BADGES:BEGIN:TOP_LANGUAGES -->` and `render_tables.py`).
   * Multi-column Markdown project tables remain untouched (or can be updated precisely using `<!-- TABLE:BEGIN -->` markers and `render_tables.py`).
   * Embedded GIFs, videos, and custom styling remain untouched.
   * Other background actions and CI workflows continue running unaffected.
