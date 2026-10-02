@@ -19,36 +19,47 @@ TABLE_END_REGEX = re.compile(r"^\s*<!-- TABLE:END:(?P<name>[A-Z0-9_]+) -->\s*$")
 BADGE_BEGIN_REGEX = re.compile(r"^\s*<!-- BADGES:BEGIN:(?P<name>[A-Z0-9_]+) -->\s*$")
 BADGE_END_REGEX = re.compile(r"^\s*<!-- BADGES:END:(?P<name>[A-Z0-9_]+) -->\s*$")
 
-# Common tech stacks mapped to their Shields.io configuration
+# Common tech stacks mapped to their Shields.io configuration and Category
 TECH_BADGE_MAP = {
-    "python": ("Python", "3776AB", "python"),
-    "javascript": ("JavaScript", "F7DF1E", "javascript"),
-    "typescript": ("TypeScript", "3178C6", "typescript"),
-    "react": ("React", "61DAFB", "react"),
-    "next.js": ("Next.js", "000000", "nextdotjs"),
-    "vue": ("Vue.js", "4FC08D", "vuedotjs"),
-    "html": ("HTML5", "E34F26", "html5"),
-    "css": ("CSS3", "1572B6", "css3"),
-    "node.js": ("Node.js", "339939", "nodedotjs"),
-    "go": ("Go", "00ADD8", "go"),
-    "rust": ("Rust", "000000", "rust"),
-    "java": ("Java", "ED8B00", "java"),
-    "c++": ("C++", "00599C", "cplusplus"),
-    "c#": ("C#", "239120", "csharp"),
-    "ruby": ("Ruby", "CC342D", "ruby"),
-    "php": ("PHP", "777BB4", "php"),
-    "docker": ("Docker", "2496ED", "docker"),
-    "kubernetes": ("Kubernetes", "326CE5", "kubernetes"),
-    "aws": ("AWS", "232F3E", "amazonaws"),
-    "gcp": ("Google Cloud", "4285F4", "googlecloud"),
-    "azure": ("Azure", "0089D6", "microsoftazure"),
-    "fastapi": ("FastAPI", "009688", "fastapi"),
-    "supabase": ("Supabase", "3ECF8E", "supabase"),
-    "postgres": ("PostgreSQL", "4169E1", "postgresql"),
-    "mysql": ("MySQL", "4479A1", "mysql"),
-    "mongodb": ("MongoDB", "47A248", "mongodb"),
-    "redis": ("Redis", "DC382D", "redis"),
-    "linux": ("Linux", "FCC624", "linux"),
+    "python": ("Python", "000000", "python", "Core"),
+    "javascript": ("JavaScript", "000000", "javascript", "Core"),
+    "typescript": ("TypeScript", "000000", "typescript", "Core"),
+    "sql": ("SQL", "000000", "postgresql", "Core"),
+    "java": ("Java", "000000", "java", "Core"),
+    "c++": ("C++", "000000", "cplusplus", "Core"),
+    
+    "pytorch": ("PyTorch", "000000", "pytorch", "AI / ML"),
+    "tensorflow": ("TensorFlow", "000000", "tensorflow", "AI / ML"),
+    "scikit-learn": ("scikit-learn", "000000", "scikitlearn", "AI / ML"),
+    "opencv": ("OpenCV", "000000", "opencv", "AI / ML"),
+    "huggingface": ("Hugging Face", "000000", "huggingface", "AI / ML"),
+    "pandas": ("pandas", "000000", "pandas", "AI / ML"),
+    "numpy": ("NumPy", "000000", "numpy", "AI / ML"),
+    
+    "react": ("React", "000000", "react", "Full-stack"),
+    "next.js": ("Next.js", "000000", "nextdotjs", "Full-stack"),
+    "react native": ("React Native", "000000", "react", "Full-stack"),
+    "vue": ("Vue.js", "000000", "vuedotjs", "Full-stack"),
+    "fastapi": ("FastAPI", "000000", "fastapi", "Full-stack"),
+    "flask": ("Flask", "000000", "flask", "Full-stack"),
+    "node.js": ("Node.js", "000000", "nodedotjs", "Full-stack"),
+    "html": ("HTML5", "000000", "html5", "Full-stack"),
+    "css": ("CSS3", "000000", "css3", "Full-stack"),
+    
+    "postgres": ("PostgreSQL", "000000", "postgresql", "Data / systems"),
+    "postgresql": ("PostgreSQL", "000000", "postgresql", "Data / systems"),
+    "supabase": ("Supabase", "000000", "supabase", "Data / systems"),
+    "mongodb": ("MongoDB", "000000", "mongodb", "Data / systems"),
+    "firebase": ("Firebase", "000000", "firebase", "Data / systems"),
+    "docker": ("Docker", "000000", "docker", "Data / systems"),
+    "kubernetes": ("Kubernetes", "000000", "kubernetes", "Data / systems"),
+    "github actions": ("GitHub Actions", "000000", "githubactions", "Data / systems"),
+    "aws": ("AWS", "000000", "amazonaws", "Data / systems"),
+    "gcp": ("Google Cloud", "000000", "googlecloud", "Data / systems"),
+    
+    "langchain": ("LangChain", "000000", "langchain", "Exploring / research"),
+    "langgraph": ("LangGraph", "000000", "langchain", "Exploring / research"),
+    "rag": ("RAG", "000000", "openai", "Exploring / research"),
 }
 
 def load_json(filepath: str) -> dict:
@@ -100,37 +111,91 @@ def generate_top_languages_badges(context: dict) -> list[str]:
     if not repos:
         return []
 
-    # Tally up languages and topics
     tech_counts = {}
     for repo in repos:
         lang = repo.get("primary_language")
         if lang:
             tech_counts[lang.lower()] = tech_counts.get(lang.lower(), 0) + 1
-        
         for topic in repo.get("topics", []):
             tech_counts[topic.lower()] = tech_counts.get(topic.lower(), 0) + 1
 
-    # Sort by frequency
     sorted_tech = sorted(tech_counts.items(), key=lambda x: x[1], reverse=True)
     
-    # Generate badges for known tech
     badges = []
     for tech, count in sorted_tech:
         if tech in TECH_BADGE_MAP:
-            label, color, logo = TECH_BADGE_MAP[tech]
-            # GitHub badge format
+            label, color, logo, _ = TECH_BADGE_MAP[tech]
             badge_md = f"![{label}](https://img.shields.io/badge/{label.replace(' ', '%20')}-{color}?style=flat-square&logo={logo}&logoColor=white)"
             if badge_md not in badges:
                 badges.append(badge_md)
-                
-        if len(badges) >= 10: # Limit to top 10 technologies
+        if len(badges) >= 10:
             break
             
     if not badges:
         return []
-        
-    # Return as a single line wrapped in a div/p or just joined by spaces
     return [" ".join(badges)]
+
+def generate_stack_trace_html(context: dict) -> list[str]:
+    repos = context.get("repositories", [])
+    if not repos:
+        return []
+
+    # Get unique tech from repos
+    tech_set = set()
+    for repo in repos:
+        lang = repo.get("primary_language")
+        if lang:
+            tech_set.add(lang.lower())
+        for topic in repo.get("topics", []):
+            tech_set.add(topic.lower())
+            
+    # Group by category
+    categories = {
+        "Core": [],
+        "AI / ML": [],
+        "Full-stack": [],
+        "Data / systems": [],
+        "Exploring / research": []
+    }
+    
+    for tech in tech_set:
+        if tech in TECH_BADGE_MAP:
+            label, color, logo, cat = TECH_BADGE_MAP[tech]
+            badge_md = f'<img src="https://img.shields.io/badge/{label.replace(" ", "%20")}-{color}?style=for-the-badge&logo={logo}&logoColor=00FF41" alt="{label}" />'
+            if cat in categories and badge_md not in categories[cat]:
+                categories[cat].append(badge_md)
+                
+    # Build HTML table rows
+    html_lines = []
+    html_lines.append("<table>")
+    html_lines.append("  <tr>")
+    html_lines.append('    <th align="left">Layer</th>')
+    html_lines.append('    <th align="left">Worked with</th>')
+    html_lines.append("  </tr>")
+    
+    for cat, badges in categories.items():
+        if not badges:
+            continue
+        html_lines.append("  <tr>")
+        html_lines.append(f"    <td><strong>{cat}</strong></td>")
+        html_lines.append("    <td>")
+        for b in badges:
+            html_lines.append(f"      {b}")
+        html_lines.append("    </td>")
+        html_lines.append("  </tr>")
+        
+    html_lines.append("</table>")
+    return html_lines
+
+def generate_current_focus_rows(facts: dict) -> list[str]:
+    focus_list = facts.get("manual_current_focus", [])
+    if not focus_list:
+        return ["| No current focus specified | |"]
+        
+    rows = []
+    for item in focus_list:
+        rows.append(f"| {item} | Active |")
+    return rows
 
 def generate_active_builds_rows(context: dict, facts: dict) -> list[str]:
     # We prioritize featured repositories, or fallback to the top repositories from context
@@ -207,6 +272,16 @@ def process_readme(readme_path: str, context_path: str, facts_path: str):
             new_lines = [row + "\n" for row in rows]
             lines[b+1 : e] = new_lines
             print(f"Updated table region: {name}")
+        elif rtype == "TABLE" and name == "CURRENT_FOCUS":
+            rows = generate_current_focus_rows(facts)
+            new_lines = [row + "\n" for row in rows]
+            lines[b+1 : e] = new_lines
+            print(f"Updated table region: {name}")
+        elif rtype == "TABLE" and name == "STACK_TRACE":
+            rows = generate_stack_trace_html(context)
+            new_lines = [row + "\n" for row in rows]
+            lines[b+1 : e] = new_lines
+            print(f"Updated HTML table region: {name}")
         elif rtype == "BADGES" and name == "TOP_LANGUAGES":
             rows = generate_top_languages_badges(context)
             new_lines = [row + "\n" for row in rows]

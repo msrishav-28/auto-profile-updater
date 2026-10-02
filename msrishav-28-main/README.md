@@ -24,7 +24,7 @@
 
 <p align="center">
 <!-- BADGES:BEGIN:TOP_LANGUAGES -->
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-000000?style=flat-square&logo=python&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-000000?style=flat-square&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=flat-square&logo=javascript&logoColor=white)
 <!-- BADGES:END:TOP_LANGUAGES -->
 </p>
 
@@ -44,14 +44,11 @@ My focus is on productivity tools, workflow systems, and keeping this profile co
 
 ## > current.focus ![focus active](https://img.shields.io/badge/focus-active-39FF14?style=flat-square&labelColor=0D1117&color=39FF14)
 
-| Signal | Direction |
-|---|---|
-| AI-native workflows | Productivity, planning, document intelligence, and automation systems |
-| Healthcare tools | Clinical, medication, and telehealth workflow prototypes with careful safety framing |
-| Applied ML | Computer vision, time-series modeling, financial signals, and scientific ML pipelines |
-| Geospatial systems | Multi-source monitoring across satellite, weather, environment, and hazard-risk data |
-| Developer tooling | Repository documentation, code explanation, validation, and build-readiness workflows |
-| Product engineering | Cleaner interfaces, stronger docs, testable services, and honest deployment paths |
+<!-- TABLE:BEGIN:CURRENT_FOCUS -->
+| Building agentic and automation-oriented developer tools | Active |
+| Developing AI-enabled product concepts for practical user workflows | Active |
+| Improving production engineering fundamentals across backend, frontend, deployment, and observability | Active |
+<!-- TABLE:END:CURRENT_FOCUS -->
 
 ---
 
@@ -84,6 +81,7 @@ public evidence, not exaggerated production claims.
 
 ## > stack.trace ![stack map](https://img.shields.io/badge/stack-map-00FF41?style=flat-square&labelColor=0D1117&color=00FF41)
 
+<!-- TABLE:BEGIN:STACK_TRACE -->
 <table>
   <tr>
     <th align="left">Layer</th>
@@ -93,57 +91,12 @@ public evidence, not exaggerated production claims.
     <td><strong>Core</strong></td>
     <td>
       <img src="https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=00FF41" alt="Python" />
-      <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00FF41" alt="TypeScript" />
       <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=00FF41" alt="JavaScript" />
-      <img src="https://img.shields.io/badge/SQL-000000?style=for-the-badge&logo=postgresql&logoColor=00FF41" alt="SQL" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>AI / ML</strong></td>
-    <td>
-      <img src="https://img.shields.io/badge/PyTorch-000000?style=for-the-badge&logo=pytorch&logoColor=00FF41" alt="PyTorch" />
-      <img src="https://img.shields.io/badge/TensorFlow-000000?style=for-the-badge&logo=tensorflow&logoColor=00FF41" alt="TensorFlow" />
-      <img src="https://img.shields.io/badge/scikit--learn-000000?style=for-the-badge&logo=scikitlearn&logoColor=00FF41" alt="scikit-learn" />
-      <img src="https://img.shields.io/badge/OpenCV-000000?style=for-the-badge&logo=opencv&logoColor=00FF41" alt="OpenCV" />
-      <img src="https://img.shields.io/badge/Hugging%20Face-000000?style=for-the-badge&logo=huggingface&logoColor=00FF41" alt="Hugging Face" />
-      <img src="https://img.shields.io/badge/pandas-000000?style=for-the-badge&logo=pandas&logoColor=00FF41" alt="pandas" />
-      <img src="https://img.shields.io/badge/NumPy-000000?style=for-the-badge&logo=numpy&logoColor=00FF41" alt="NumPy" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Full-stack</strong></td>
-    <td>
-      <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=00FF41" alt="Next.js" />
-      <img src="https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=00FF41" alt="React" />
-      <img src="https://img.shields.io/badge/React%20Native-000000?style=for-the-badge&logo=react&logoColor=00FF41" alt="React Native" />
-      <img src="https://img.shields.io/badge/FastAPI-000000?style=for-the-badge&logo=fastapi&logoColor=00FF41" alt="FastAPI" />
-      <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=00FF41" alt="Flask" />
-      <img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=nodedotjs&logoColor=00FF41" alt="Node.js" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Data / systems</strong></td>
-    <td>
-      <img src="https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=postgresql&logoColor=00FF41" alt="PostgreSQL" />
-      <img src="https://img.shields.io/badge/Supabase-000000?style=for-the-badge&logo=supabase&logoColor=00FF41" alt="Supabase" />
-      <img src="https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=00FF41" alt="MongoDB" />
-      <img src="https://img.shields.io/badge/Firebase-000000?style=for-the-badge&logo=firebase&logoColor=00FF41" alt="Firebase" />
-      <img src="https://img.shields.io/badge/Docker-000000?style=for-the-badge&logo=docker&logoColor=00FF41" alt="Docker" />
-      <img src="https://img.shields.io/badge/GitHub%20Actions-000000?style=for-the-badge&logo=githubactions&logoColor=00FF41" alt="GitHub Actions" />
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Exploring / research</strong></td>
-    <td>
-      <img src="https://img.shields.io/badge/LangChain-000000?style=for-the-badge&logo=langchain&logoColor=00FF41" alt="LangChain" />
-      <img src="https://img.shields.io/badge/LangGraph-000000?style=for-the-badge&logo=langchain&logoColor=00FF41" alt="LangGraph" />
-      <img src="https://img.shields.io/badge/RAG-000000?style=for-the-badge&logo=openai&logoColor=00FF41" alt="RAG" />
-      <img src="https://img.shields.io/badge/Geo%20APIs-000000?style=for-the-badge&logo=mapbox&logoColor=00FF41" alt="Geospatial APIs" />
-      <img src="https://img.shields.io/badge/CV%20Transformers-000000?style=for-the-badge&logo=opencv&logoColor=00FF41" alt="Computer vision transformers" />
-      <img src="https://img.shields.io/badge/Time--series%20ML-000000?style=for-the-badge&logo=prometheus&logoColor=00FF41" alt="Time-series ML" />
+      <img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00FF41" alt="TypeScript" />
     </td>
   </tr>
 </table>
+<!-- TABLE:END:STACK_TRACE -->
 
 ---
 
