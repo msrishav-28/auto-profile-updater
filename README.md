@@ -182,11 +182,32 @@ approved_domains:
   - machine learning
 ```
 
-### 3. Add the Safety Markers to Your Profile README
-Place the marker comments in your profile repository's `README.md` where you want your dynamic summary:
+### 3. Add the Markers to Your Profile README
+Place the AI markers in your profile repository's `README.md` where you want the AI-generated dynamic narrative:
 ```markdown
 <!-- AI:BEGIN -->
 <!-- AI:END -->
+```
+
+You can also use deterministic markers for tables and badges that will be updated securely and automatically by `render_tables.py` without AI generation:
+```markdown
+<!-- TABLE:BEGIN:ACTIVE_BUILDS -->
+<!-- TABLE:END:ACTIVE_BUILDS -->
+
+<!-- TABLE:BEGIN:STACK_TRACE -->
+<!-- TABLE:END:STACK_TRACE -->
+
+<!-- TABLE:BEGIN:CURRENT_FOCUS -->
+<!-- TABLE:END:CURRENT_FOCUS -->
+
+<!-- TABLE:BEGIN:GITHUB_STATS -->
+<!-- TABLE:END:GITHUB_STATS -->
+
+<!-- TABLE:BEGIN:LATEST_POSTS -->
+<!-- TABLE:END:LATEST_POSTS -->
+
+<!-- BADGES:BEGIN:TOP_LANGUAGES -->
+<!-- BADGES:END:TOP_LANGUAGES -->
 ```
 
 ### 4. Enable GitHub Actions Permissions
